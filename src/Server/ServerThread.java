@@ -1,11 +1,8 @@
 package Server;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ServerThread extends Thread {
     private Socket socket;
@@ -53,9 +50,7 @@ public class ServerThread extends Thread {
 
         // print to all clients in the client list
         for (ServerThread client : threadList) {
-            if (client.socket.isClosed()) {
-                threadList.remove(client);
-            }
+
             client.output.println(output);
             client.output.flush();
         }
